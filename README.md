@@ -1,2 +1,3 @@
-# java-gestion-inventario
-Aplicación de escritorio para gestionar el inventario de una tienda
+# **Gestión de Invetario** 🏪
+
+> Aplicación de escritorio en **Java** para gestionar el inventario de una tienda
