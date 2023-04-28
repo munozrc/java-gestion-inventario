@@ -15,22 +15,98 @@ public class StockWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        container = new javax.swing.JPanel();
+        menu = new javax.swing.JPanel();
+        brand = new javax.swing.JLabel();
+        branddot = new javax.swing.JLabel();
+        searchbar = new javax.swing.JPanel();
+        searchIcon = new javax.swing.JLabel();
+        inputSearch = new javax.swing.JTextField();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setName("Window"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(800, 500));
+        setResizable(false);
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
+
+        container.setBackground(new java.awt.Color(243, 243, 243));
+
+        menu.setBackground(new java.awt.Color(16, 16, 16));
+        menu.setMaximumSize(new java.awt.Dimension(800, 45));
+        menu.setMinimumSize(new java.awt.Dimension(800, 45));
+        menu.setPreferredSize(new java.awt.Dimension(800, 45));
+        menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        brand.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        brand.setForeground(new java.awt.Color(250, 250, 250));
+        brand.setText("Stock");
+        menu.add(brand, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, 40));
+
+        branddot.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        branddot.setForeground(new java.awt.Color(255, 102, 102));
+        branddot.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        branddot.setText(".");
+        branddot.setAlignmentX(0.5F);
+        menu.add(branddot, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 0, 10, 30));
+
+        searchbar.setBackground(new java.awt.Color(64, 64, 64));
+
+        searchIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/SearchIcon.png"))); // NOI18N
+
+        inputSearch.setBackground(new java.awt.Color(64, 64, 64));
+        inputSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        inputSearch.setForeground(new java.awt.Color(204, 204, 204));
+        inputSearch.setBorder(null);
+        inputSearch.setCaretColor(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout searchbarLayout = new javax.swing.GroupLayout(searchbar);
+        searchbar.setLayout(searchbarLayout);
+        searchbarLayout.setHorizontalGroup(
+            searchbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchbarLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(searchIcon)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(inputSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+        searchbarLayout.setVerticalGroup(
+            searchbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchbarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(searchbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(inputSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(searchIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        menu.add(searchbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 300, 45));
+
+        javax.swing.GroupLayout containerLayout = new javax.swing.GroupLayout(container);
+        container.setLayout(containerLayout);
+        containerLayout.setHorizontalGroup(
+            containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        containerLayout.setVerticalGroup(
+            containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(containerLayout.createSequentialGroup()
+                .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 455, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(container);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel brand;
+    private javax.swing.JLabel branddot;
+    private javax.swing.JPanel container;
+    private javax.swing.JTextField inputSearch;
+    private javax.swing.JPanel menu;
+    private javax.swing.JLabel searchIcon;
+    private javax.swing.JPanel searchbar;
     // End of variables declaration//GEN-END:variables
 }
