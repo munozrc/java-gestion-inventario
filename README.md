@@ -24,4 +24,12 @@ Como paso siguiente cambiamos al directorio de nuestro proyecto con el comando:
 cd java-gestion-inventario/
 ```
 
-Solo resta abrir el proyecto desde el IDE [Apache NetBeans](https://netbeans.apache.org/download/index.html)
+Este proyecto emplea como base de datos [SQLite](https://github.com/xerial/sqlite-jdbc) es por ello que se debe contar con el controlador respectivo para la conexion.
+
+Las dependencias se importan con el siguiente comando:
+
+```bash
+scripts/download_dependencies.sh
+```
+
+Completado este paso solo resta abrir el proyecto desde el IDE [Apache NetBeans](https://netbeans.apache.org/download/index.html)
