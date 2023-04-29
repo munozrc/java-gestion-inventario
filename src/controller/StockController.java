@@ -2,8 +2,6 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import model.Product;
-import model.ProductRepository;
 import model.StockRepository;
 import view.StockWindow;
 
