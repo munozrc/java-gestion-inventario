@@ -3,17 +3,21 @@ package app;
 import controller.StockController;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import model.StockRepository;
 import view.StockWindow;
 
 public class StartApplication {
 
     public static void main(String[] args) {
+
         setLookAndFeel();
 
         StockWindow view = new StockWindow();
-        StockController controller = new StockController(view);
+        StockRepository model = new StockRepository();
+        StockController controller = new StockController(model, view);
 
-        controller.launchStockWindow();
+        controller.launchView();
+
     }
 
     private static void setLookAndFeel() {
