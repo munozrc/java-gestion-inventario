@@ -4,16 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import model.Provider;
-import model.ProviderRepository;
+import model.ProviderModel;
 import view.ProviderForm;
 
 public class ProviderController implements ActionListener {
 
-    private final ProviderRepository model;
+    private final ProviderModel model;
     private final ProviderForm view;
 
-    public ProviderController(ProviderRepository model, ProviderForm view) {
+    public ProviderController(ProviderModel model, ProviderForm view) {
         this.model = model;
         this.view = view;
         initializeListeners();
@@ -43,7 +42,7 @@ public class ProviderController implements ActionListener {
             return;
         }
 
-        Provider provider = new Provider(name, email);
+        ProviderModel provider = new ProviderModel(name, email);
         boolean addedSuccessfully = model.addProvider(provider);
 
         if (!addedSuccessfully) {

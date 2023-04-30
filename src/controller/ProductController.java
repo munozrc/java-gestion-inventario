@@ -4,18 +4,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
-import model.Product;
-import model.Provider;
-import model.ProductRepository;
-import model.ProviderRepository;
+import model.ProductModel;
+import model.ProviderModel;
 import view.ProductForm;
 
 public class ProductController implements ActionListener {
 
     private final ProductForm view;
-    private final ProductRepository model;
+    private final ProductModel model;
 
-    public ProductController(ProductRepository model, ProductForm view) {
+    public ProductController(ProductModel model, ProductForm view) {
         this.model = model;
         this.view = view;
         this.initializeListeners();
@@ -39,21 +37,20 @@ public class ProductController implements ActionListener {
         String priceText = view.priceText.getText().trim();
         String stockText = view.stockText.getText().trim();
 
-        Provider provider = (Provider) view.providerComboBox.getSelectedItem();
-        int providerID = provider.getId();
+        ProviderModel provider = (ProviderModel) view.providerComboBox.getSelectedItem();
+        int id = provider.getId();
 
         if (barcodeText.equals("")
                 || nameText.equals("")
                 || priceText.equals("")
                 || stockText.equals("")
-                || providerID == 0) {
+                || id == 0) {
             return;
         }
 
         float price;
         int stock;
 
-        // TODO: Add column for provider in products table
         try {
             price = Float.parseFloat(priceText);
             stock = Integer.parseInt(stockText);
@@ -61,7 +58,7 @@ public class ProductController implements ActionListener {
             return;
         }
 
-        Product product = new Product(nameText, barcodeText, price, stock);
+        ProductModel product = new ProductModel(nameText, barcodeText, price, stock, id);
         boolean addedSuccessfully = model.addProduct(product);
 
         if (!addedSuccessfully) {
@@ -72,10 +69,10 @@ public class ProductController implements ActionListener {
     }
 
     private void getListOfProviders() {
-        ArrayList<Provider> listOfProviders = (new ProviderRepository()).getListOfProviders();
-        listOfProviders.add(0, new Provider(0, "Selecciona", ""));
+        ArrayList<ProviderModel> listOfProviders = (new ProviderModel()).getListOfProviders();
+        listOfProviders.add(0, new ProviderModel(0, "Selecciona", ""));
 
-        Provider[] providers = new Provider[listOfProviders.size()];
+        ProviderModel[] providers = new ProviderModel[listOfProviders.size()];
         listOfProviders.toArray(providers);
 
         DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(providers);

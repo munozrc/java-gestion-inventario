@@ -1,17 +1,17 @@
 package model;
 
-public class Stock {
+public class StockModel {
 
-    private final int productID;
-    private final String productName;
-    private final float productPrice;
-    private final int productStock;
+    private int productID;
+    private String productName;
+    private float productPrice;
+    private int productStock;
 
-    private final int providerID;
-    private final String providerName;
-    private final String providerAddress;
+    private int providerID;
+    private String providerName;
+    private String providerAddress;
 
-    public Stock(
+    public StockModel(
             int productID,
             String productName,
             float productPrice,
@@ -29,32 +29,63 @@ public class Stock {
         this.providerAddress = providerAddress;
     }
 
+    public StockModel() {
+    }
+
     public int getProductID() {
         return productID;
+    }
+
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
 
     public String getProductName() {
         return productName;
     }
 
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
     public float getProductPrice() {
         return productPrice;
+    }
+
+    public void setProductPrice(float productPrice) {
+        this.productPrice = productPrice;
     }
 
     public int getProductStock() {
         return productStock;
     }
 
+    public void setProductStock(int productStock) {
+        this.productStock = productStock;
+    }
+
     public int getProviderID() {
         return providerID;
+    }
+
+    public void setProviderID(int providerID) {
+        this.providerID = providerID;
     }
 
     public String getProviderName() {
         return providerName;
     }
 
+    public void setProviderName(String providerName) {
+        this.providerName = providerName;
+    }
+
     public String getProviderAddress() {
         return providerAddress;
+    }
+
+    public void setProviderAddress(String providerAddress) {
+        this.providerAddress = providerAddress;
     }
 
 }

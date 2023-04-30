@@ -6,19 +6,19 @@ import java.sql.SQLException;
 
 public class Database {
 
-    static final String FILENAME = "inventario.db";
+    final String FILENAME = "inventario.db";
+    final String DRIVER = "org.sqlite.JDBC";
+    final String URL = "jdbc:sqlite:" + FILENAME;
 
-    public static Connection getConnection() {
-
+    public Connection getConnection() {
         try {
-            Class.forName("org.sqlite.JDBC");
-            Connection con = DriverManager.getConnection("jdbc:sqlite:" + FILENAME);
+            Class.forName(DRIVER);
+            Connection con = DriverManager.getConnection(URL);
             System.out.println("[OK] Connection database is succeded");
             return con;
         } catch (ClassNotFoundException | SQLException e) {
             System.err.print("[FAIL] Connection database failed " + e);
             return null;
         }
-
     }
 }

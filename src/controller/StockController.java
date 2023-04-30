@@ -2,34 +2,39 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import model.StockRepository;
-import view.StockWindow;
+import model.ProductModel;
+import model.StockModel;
+import view.ProductForm;
+import view.StockView;
 
 public class StockController implements ActionListener {
 
-    private final StockRepository model;
-    private final StockWindow window;
+    private final StockModel model;
+    private final StockView window;
 
-    public StockController(StockRepository model, StockWindow view) {
+    public StockController(StockModel model, StockView view) {
         this.model = model;
         this.window = view;
-
         initializeListeners();
     }
 
     public void launchView() {
-        this.window.setTitle("Gestion de Inventario");
-        this.window.setLocationRelativeTo(null);
-        this.window.setVisible(true);
+        window.setTitle("Gestion de Inventario");
+        window.setLocationRelativeTo(null);
+        window.setVisible(true);
     }
 
     private void initializeListeners() {
-        // TODO: Add actions listerners for buttons and text fields
+        window.buttonAddProduct.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO: Add action view StockWindow
+        if (e.getSource() == window.buttonAddProduct) {
+            ProductModel proModel = new ProductModel();
+            ProductForm viewModel = ProductForm.getInstance();
+            (new ProductController(proModel, viewModel)).launchView();
+        }
     }
 
 }

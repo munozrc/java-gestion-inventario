@@ -1,8 +1,8 @@
 package view;
 
-public class StockWindow extends javax.swing.JFrame {
+public class StockView extends javax.swing.JFrame {
 
-    public StockWindow() {
+    public StockView() {
         initComponents();
     }
 
@@ -22,6 +22,7 @@ public class StockWindow extends javax.swing.JFrame {
         searchbar = new javax.swing.JPanel();
         searchIcon = new javax.swing.JLabel();
         inputSearch = new javax.swing.JTextField();
+        buttonAddProduct = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Window"); // NOI18N
@@ -81,17 +82,25 @@ public class StockWindow extends javax.swing.JFrame {
 
         menu.add(searchbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 300, 45));
 
+        buttonAddProduct.setText("+");
+
         javax.swing.GroupLayout containerLayout = new javax.swing.GroupLayout(container);
         container.setLayout(containerLayout);
         containerLayout.setHorizontalGroup(
             containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerLayout.createSequentialGroup()
+                .addGap(165, 165, 165)
+                .addComponent(buttonAddProduct)
+                .addGap(151, 151, 151))
         );
         containerLayout.setVerticalGroup(
             containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(containerLayout.createSequentialGroup()
                 .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 455, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(buttonAddProduct)
+                .addGap(0, 407, Short.MAX_VALUE))
         );
 
         getContentPane().add(container);
@@ -102,6 +111,7 @@ public class StockWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel brand;
     private javax.swing.JLabel branddot;
+    public javax.swing.JButton buttonAddProduct;
     private javax.swing.JPanel container;
     private javax.swing.JTextField inputSearch;
     private javax.swing.JPanel menu;
