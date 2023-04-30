@@ -2,8 +2,17 @@ package view;
 
 public class ProviderForm extends javax.swing.JFrame {
 
+    private static ProviderForm instance = null;
+
     public ProviderForm() {
         initComponents();
+    }
+
+    public static ProviderForm getInstance() {
+        if (instance == null) {
+            instance = new ProviderForm();
+        }
+        return instance;
     }
 
     /**
@@ -15,22 +24,122 @@ public class ProviderForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        container = new javax.swing.JPanel();
+        titleContainer = new javax.swing.JPanel();
+        title = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
+        nameWrapper = new javax.swing.JPanel();
+        nameText = new javax.swing.JTextField();
+        emailLabel = new javax.swing.JLabel();
+        emailWrapper = new javax.swing.JPanel();
+        emailText = new javax.swing.JTextField();
+        buttonGroup = new javax.swing.JPanel();
+        buttonAccept = new javax.swing.JButton();
+        buttonCancel = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
+
+        container.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        titleContainer.setBackground(new java.awt.Color(16, 16, 16));
+
+        title.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        title.setForeground(new java.awt.Color(250, 250, 250));
+        title.setText("Nuevo Proveedor");
+
+        javax.swing.GroupLayout titleContainerLayout = new javax.swing.GroupLayout(titleContainer);
+        titleContainer.setLayout(titleContainerLayout);
+        titleContainerLayout.setHorizontalGroup(
+            titleContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(titleContainerLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(title)
+                .addContainerGap(176, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+        titleContainerLayout.setVerticalGroup(
+            titleContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(titleContainerLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(title)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
+
+        container.add(titleContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 435, 80));
+
+        nameLabel.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        nameLabel.setForeground(new java.awt.Color(118, 118, 118));
+        nameLabel.setText("NOMBRE");
+        container.add(nameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+
+        nameWrapper.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(229, 229, 229), 2, true));
+        nameWrapper.setLayout(new javax.swing.BoxLayout(nameWrapper, javax.swing.BoxLayout.LINE_AXIS));
+
+        nameText.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
+        nameWrapper.add(nameText);
+
+        container.add(nameWrapper, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 116, 380, 33));
+
+        emailLabel.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        emailLabel.setForeground(new java.awt.Color(118, 118, 118));
+        emailLabel.setText("CORREO ELECTRONICO");
+        container.add(emailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
+
+        emailWrapper.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(229, 229, 229), 2, true));
+        emailWrapper.setLayout(new javax.swing.BoxLayout(emailWrapper, javax.swing.BoxLayout.LINE_AXIS));
+
+        emailText.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
+        emailWrapper.add(emailText);
+
+        container.add(emailWrapper, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 176, 380, 33));
+
+        buttonGroup.setBackground(new java.awt.Color(246, 246, 246));
+        buttonGroup.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 0, new java.awt.Color(230, 230, 230)));
+
+        buttonAccept.setText("Añadir");
+
+        buttonCancel.setText("Cancelar");
+
+        javax.swing.GroupLayout buttonGroupLayout = new javax.swing.GroupLayout(buttonGroup);
+        buttonGroup.setLayout(buttonGroupLayout);
+        buttonGroupLayout.setHorizontalGroup(
+            buttonGroupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buttonGroupLayout.createSequentialGroup()
+                .addContainerGap(225, Short.MAX_VALUE)
+                .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(buttonAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+        );
+        buttonGroupLayout.setVerticalGroup(
+            buttonGroupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buttonGroupLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(buttonGroupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonAccept)
+                    .addComponent(buttonCancel))
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+
+        container.add(buttonGroup, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 435, 50));
+
+        getContentPane().add(container);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton buttonAccept;
+    public javax.swing.JButton buttonCancel;
+    private javax.swing.JPanel buttonGroup;
+    private javax.swing.JPanel container;
+    private javax.swing.JLabel emailLabel;
+    public javax.swing.JTextField emailText;
+    private javax.swing.JPanel emailWrapper;
+    private javax.swing.JLabel nameLabel;
+    public javax.swing.JTextField nameText;
+    private javax.swing.JPanel nameWrapper;
+    private javax.swing.JLabel title;
+    private javax.swing.JPanel titleContainer;
     // End of variables declaration//GEN-END:variables
 }
