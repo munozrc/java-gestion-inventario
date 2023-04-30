@@ -153,7 +153,7 @@ public class ProductForm extends javax.swing.JFrame {
         providerLabel.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         providerLabel.setForeground(new java.awt.Color(118, 118, 118));
         providerLabel.setLabelFor(nameText);
-        providerLabel.setText("STOCK");
+        providerLabel.setText("PROVEEDOR");
         container.add(providerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(235, 160, -1, -1));
 
         providerComboBox.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(229, 229, 229)));
