@@ -4,15 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import model.ProviderModel;
-import view.ProviderForm;
+import model.SupplierModel;
+import view.SupplierForm;
 
-public class ProviderController implements ActionListener {
+public class SupplierController implements ActionListener {
 
-    private final ProviderModel model;
-    private final ProviderForm view;
+    private final SupplierModel model;
+    private final SupplierForm view;
 
-    public ProviderController(ProviderModel model, ProviderForm view) {
+    public SupplierController(SupplierModel model, SupplierForm view) {
         this.model = model;
         this.view = view;
         initializeListeners();
@@ -34,22 +34,25 @@ public class ProviderController implements ActionListener {
         String email = view.emailText.getText().trim();
 
         if (name.equals("") || email.equals("")) {
+            // TODO: show JOptionPane "Campos vacios"
             return;
         }
 
         if (!checkEmail(email)) {
-            System.out.println("Email no valid!");
+            // TODO: show JOptionPane "Email no valido"
             return;
         }
 
-        ProviderModel provider = new ProviderModel(name, email);
-        boolean addedSuccessfully = model.addProvider(provider);
+        model.setName(name);
+        model.setEmail(email);
 
-        if (!addedSuccessfully) {
+        if (!model.addProvider()) {
+            // TODO: show JOptionPane "Fallo al guardar proveedor"
             return;
         }
 
         view.dispose();
+        this.cleanFields();
     }
 
     @Override
@@ -58,6 +61,7 @@ public class ProviderController implements ActionListener {
             addProvider();
         } else if (e.getSource() == view.buttonCancel) {
             view.dispose();
+            this.cleanFields();
         }
     }
 
@@ -67,6 +71,11 @@ public class ProviderController implements ActionListener {
         Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(text);
         return matcher.matches();
+    }
+
+    private void cleanFields() {
+        view.nameText.setText("");
+        view.emailText.setText("");
     }
 
 }

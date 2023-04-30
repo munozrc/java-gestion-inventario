@@ -1,11 +1,16 @@
 package model;
 
-public class StockModel {
+import app.Database;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class StockModel extends Database {
 
     private int productID;
     private String productName;
     private float productPrice;
-    private int productStock;
+    private int productQuantity;
 
     private int providerID;
     private String providerName;
@@ -23,13 +28,36 @@ public class StockModel {
         this.productID = productID;
         this.productName = productName;
         this.productPrice = productPrice;
-        this.productStock = productStock;
+        this.productQuantity = productStock;
         this.providerID = providerID;
         this.providerName = providerName;
         this.providerAddress = providerAddress;
     }
 
     public StockModel() {
+    }
+
+    public boolean addStock() {
+        String query = "INSERT INTO stock (product, quantity) VALUES (?,?)";
+        Connection con = this.getConnection();
+
+        if (con == null) {
+            return false;
+        }
+
+        try (PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setInt(1, this.getProductID());
+            ps.setInt(2, this.getProductQuantity());
+
+            int insertedRows = ps.executeUpdate();
+            boolean addedSuccessfully = insertedRows == 1;
+            ps.close();
+            con.close();
+
+            return addedSuccessfully;
+        } catch (SQLException e) {
+            return false;
+        }
     }
 
     public int getProductID() {
@@ -56,12 +84,12 @@ public class StockModel {
         this.productPrice = productPrice;
     }
 
-    public int getProductStock() {
-        return productStock;
+    public int getProductQuantity() {
+        return productQuantity;
     }
 
-    public void setProductStock(int productStock) {
-        this.productStock = productStock;
+    public void setProductQuantity(int productQuantity) {
+        this.productQuantity = productQuantity;
     }
 
     public int getProviderID() {

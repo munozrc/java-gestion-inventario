@@ -1,16 +1,16 @@
 package view;
 
-public class ProviderForm extends javax.swing.JFrame {
+public class SupplierForm extends javax.swing.JFrame {
 
-    private static ProviderForm instance = null;
+    private static SupplierForm instance = null;
 
-    public ProviderForm() {
+    public SupplierForm() {
         initComponents();
     }
 
-    public static ProviderForm getInstance() {
+    public static SupplierForm getInstance() {
         if (instance == null) {
-            instance = new ProviderForm();
+            instance = new SupplierForm();
         }
         return instance;
     }

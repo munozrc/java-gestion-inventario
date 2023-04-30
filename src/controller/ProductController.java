@@ -5,7 +5,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import model.ProductModel;
-import model.ProviderModel;
+import model.SupplierModel;
+import model.StockModel;
 import view.ProductForm;
 
 public class ProductController implements ActionListener {
@@ -16,8 +17,8 @@ public class ProductController implements ActionListener {
     public ProductController(ProductModel model, ProductForm view) {
         this.model = model;
         this.view = view;
+        this.getListOfSuppliers();
         this.initializeListeners();
-        this.getListOfProviders();
     }
 
     public void launchView() {
@@ -35,45 +36,63 @@ public class ProductController implements ActionListener {
         String barcodeText = view.barcodeText.getText().trim();
         String nameText = view.nameText.getText().trim();
         String priceText = view.priceText.getText().trim();
-        String stockText = view.stockText.getText().trim();
+        String quantityText = view.stockText.getText().trim();
 
-        ProviderModel provider = (ProviderModel) view.providerComboBox.getSelectedItem();
-        int id = provider.getId();
+        SupplierModel supplier = (SupplierModel) view.providerComboBox.getSelectedItem();
+        int idSupplier = supplier.getId();
 
         if (barcodeText.equals("")
                 || nameText.equals("")
                 || priceText.equals("")
-                || stockText.equals("")
-                || id == 0) {
+                || quantityText.equals("")
+                || idSupplier == 0) { // if it is equal to zero it is the option "Selecciona"
+            // TODO: show JOptionPane "Campos vacios"
             return;
         }
 
         float price;
-        int stock;
+        int quantity;
 
         try {
             price = Float.parseFloat(priceText);
-            stock = Integer.parseInt(stockText);
+            quantity = Integer.parseInt(quantityText);
         } catch (NumberFormatException e) {
+            // TODO: show JOptionPane "Campos invalidos"
             return;
         }
 
-        ProductModel product = new ProductModel(nameText, barcodeText, price, stock, id);
-        boolean addedSuccessfully = model.addProduct(product);
+        this.model.setBarcode(barcodeText);
+        this.model.setName(nameText);
+        this.model.setPrice(price);
+        this.model.setSupplier(idSupplier);
 
-        if (!addedSuccessfully) {
+        if (!model.addProduct()) {
+            // TODO: show JOptionPane "Fallo al guardar proveedor"
+            return;
+        }
+
+        System.out.println(this.model.getId());
+
+        StockModel stock = new StockModel();
+        stock.setProductID(this.model.getId());
+        stock.setProductQuantity(quantity);
+
+        if (!stock.addStock()) {
+            // TODO: Add instruction to delete a product
+            // TODO: show JOptionPane "Fallo al guardar producto"
             return;
         }
 
         view.dispose();
+        this.cleanFields();
     }
 
-    private void getListOfProviders() {
-        ArrayList<ProviderModel> listOfProviders = (new ProviderModel()).getListOfProviders();
-        listOfProviders.add(0, new ProviderModel(0, "Selecciona", ""));
+    private void getListOfSuppliers() {
+        ArrayList<SupplierModel> listOfSuppliers = (new SupplierModel()).getListOfProviders();
+        listOfSuppliers.add(0, new SupplierModel(0, "Selecciona", ""));
 
-        ProviderModel[] providers = new ProviderModel[listOfProviders.size()];
-        listOfProviders.toArray(providers);
+        SupplierModel[] providers = new SupplierModel[listOfSuppliers.size()];
+        listOfSuppliers.toArray(providers);
 
         DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel(providers);
         view.providerComboBox.setModel(comboBoxModel);
@@ -85,7 +104,16 @@ public class ProductController implements ActionListener {
             addProduct();
         } else if (e.getSource() == view.buttonCancel) {
             view.dispose();
+            this.cleanFields();
         }
+    }
+
+    private void cleanFields() {
+        view.barcodeText.setText("");
+        view.nameText.setText("");
+        view.priceText.setText("");
+        view.stockText.setText("");
+        view.providerComboBox.setSelectedIndex(0);
     }
 
 }

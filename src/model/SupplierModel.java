@@ -7,28 +7,28 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ProviderModel extends Database {
+public class SupplierModel extends Database {
 
     private int id;
     private String name;
     private String email;
 
-    public ProviderModel(int id, String name, String email) {
+    public SupplierModel(int id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
     }
 
-    public ProviderModel(String name, String email) {
+    public SupplierModel(String name, String email) {
         this.name = name;
         this.email = email;
     }
 
-    public ProviderModel() {
+    public SupplierModel() {
     }
 
-    public boolean addProvider(ProviderModel provider) {
-        String query = "INSERT INTO providers (name, email) VALUES (?,?)";
+    public boolean addProvider() {
+        String query = "INSERT INTO suppliers (name, email) VALUES (?,?)";
         Connection con = this.getConnection();
 
         if (con == null) {
@@ -36,8 +36,8 @@ public class ProviderModel extends Database {
         }
 
         try (PreparedStatement ps = con.prepareStatement(query)) {
-            ps.setString(1, provider.getName());
-            ps.setString(2, provider.getEmail());
+            ps.setString(1, this.getName());
+            ps.setString(2, this.getEmail());
 
             int insertedRows = ps.executeUpdate();
             boolean addedSuccessfully = insertedRows == 1;
@@ -52,20 +52,20 @@ public class ProviderModel extends Database {
 
     }
 
-    public ArrayList<ProviderModel> getListOfProviders() {
-        String query = "SELECT * FROM providers";
+    public ArrayList<SupplierModel> getListOfProviders() {
+        String query = "SELECT * FROM suppliers";
         Connection con = this.getConnection();
-        ArrayList<ProviderModel> list = new ArrayList<>();
+        ArrayList<SupplierModel> list = new ArrayList<>();
 
         try (PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                ProviderModel provider = new ProviderModel();
-                provider.setId(Integer.parseInt(rs.getString("id")));
-                provider.setName(rs.getString("name"));
-                provider.setEmail(rs.getString("email"));
-                list.add(provider);
+                SupplierModel supplier = new SupplierModel();
+                supplier.setId(Integer.parseInt(rs.getString("id")));
+                supplier.setName(rs.getString("name"));
+                supplier.setEmail(rs.getString("email"));
+                list.add(supplier);
             }
 
             return list;

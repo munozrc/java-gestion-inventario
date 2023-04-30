@@ -4,8 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.ProductModel;
 import model.StockModel;
+import model.SupplierModel;
 import view.ProductForm;
 import view.StockView;
+import view.SupplierForm;
 
 public class StockController implements ActionListener {
 
@@ -28,12 +30,22 @@ public class StockController implements ActionListener {
         window.buttonAddProduct.addActionListener(this);
     }
 
+    private void showProductForm() {
+        ProductModel productModel = new ProductModel();
+        ProductForm productView = ProductForm.getInstance();
+        (new ProductController(productModel, productView)).launchView();
+    }
+
+    private void showSupplierForm() {
+        SupplierModel supplierModel = new SupplierModel();
+        SupplierForm supplierView = SupplierForm.getInstance();
+        (new SupplierController(supplierModel, supplierView)).launchView();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == window.buttonAddProduct) {
-            ProductModel proModel = new ProductModel();
-            ProductForm viewModel = ProductForm.getInstance();
-            (new ProductController(proModel, viewModel)).launchView();
+            showProductForm();
         }
     }
 
