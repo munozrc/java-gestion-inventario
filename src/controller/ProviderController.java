@@ -31,7 +31,6 @@ public class ProviderController implements ActionListener {
     }
 
     private void addProvider() {
-
         String name = view.nameText.getText().trim();
         String email = view.emailText.getText().trim();
 
@@ -52,7 +51,6 @@ public class ProviderController implements ActionListener {
         }
 
         view.dispose();
-
     }
 
     @Override

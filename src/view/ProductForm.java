@@ -40,6 +40,8 @@ public class ProductForm extends javax.swing.JFrame {
         stockLabel = new javax.swing.JLabel();
         stockWrapper = new javax.swing.JPanel();
         stockText = new javax.swing.JTextField();
+        providerLabel = new javax.swing.JLabel();
+        providerComboBox = new javax.swing.JComboBox<>();
         buttonGroup = new javax.swing.JPanel();
         buttonAccept = new javax.swing.JButton();
         buttonCancel = new javax.swing.JButton();
@@ -148,6 +150,15 @@ public class ProductForm extends javax.swing.JFrame {
 
         container.add(stockWrapper, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 176, 90, 33));
 
+        providerLabel.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        providerLabel.setForeground(new java.awt.Color(118, 118, 118));
+        providerLabel.setLabelFor(nameText);
+        providerLabel.setText("STOCK");
+        container.add(providerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(235, 160, -1, -1));
+
+        providerComboBox.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(229, 229, 229)));
+        container.add(providerComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(235, 176, 170, 33));
+
         buttonGroup.setBackground(new java.awt.Color(246, 246, 246));
         buttonGroup.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 0, new java.awt.Color(230, 230, 230)));
 
@@ -198,6 +209,8 @@ public class ProductForm extends javax.swing.JFrame {
     private javax.swing.JLabel priceLabel;
     public javax.swing.JTextField priceText;
     private javax.swing.JPanel priceWrapper;
+    public javax.swing.JComboBox<String> providerComboBox;
+    private javax.swing.JLabel providerLabel;
     private javax.swing.JLabel stockLabel;
     public javax.swing.JTextField stockText;
     private javax.swing.JPanel stockWrapper;
