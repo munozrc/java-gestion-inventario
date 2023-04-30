@@ -67,6 +67,8 @@ public class ProductController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == view.buttonAccept) {
             addProduct();
+        } else if (e.getSource() == view.buttonCancel) {
+            view.dispose();
         }
     }
 
