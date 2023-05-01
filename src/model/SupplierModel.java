@@ -1,35 +1,33 @@
 package model;
 
 import app.Database;
+import app.Observable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class SupplierModel extends Database {
+public class SupplierModel extends Observable {
 
     private int id;
     private String name;
     private String email;
 
     public SupplierModel(int id, String name, String email) {
+        super();
         this.id = id;
         this.name = name;
         this.email = email;
     }
 
-    public SupplierModel(String name, String email) {
-        this.name = name;
-        this.email = email;
-    }
-
     public SupplierModel() {
+        super();
     }
 
     public boolean addProvider() {
         String query = "INSERT INTO suppliers (name, email) VALUES (?,?)";
-        Connection con = this.getConnection();
+        Connection con = Database.getConnection();
 
         if (con == null) {
             return false;
@@ -54,17 +52,20 @@ public class SupplierModel extends Database {
 
     public ArrayList<SupplierModel> getListOfProviders() {
         String query = "SELECT * FROM suppliers";
-        Connection con = this.getConnection();
+        Connection con = Database.getConnection();
         ArrayList<SupplierModel> list = new ArrayList<>();
 
-        try (PreparedStatement ps = con.prepareStatement(query)) {
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 SupplierModel supplier = new SupplierModel();
+
                 supplier.setId(Integer.parseInt(rs.getString("id")));
                 supplier.setName(rs.getString("name"));
                 supplier.setEmail(rs.getString("email"));
+
                 list.add(supplier);
             }
 

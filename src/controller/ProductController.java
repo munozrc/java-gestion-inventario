@@ -1,16 +1,16 @@
 package controller;
 
+import app.Observable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JFrame;
 import model.ProductModel;
 import model.SupplierModel;
 import model.StockModel;
 import view.ProductForm;
 
-public class ProductController implements ActionListener {
+public class ProductController extends Observable implements ActionListener {
 
     private final ProductForm view;
     private final ProductModel model;
@@ -72,8 +72,6 @@ public class ProductController implements ActionListener {
             return;
         }
 
-        System.out.println(this.model.getId());
-
         StockModel stock = new StockModel();
         stock.setProductID(this.model.getId());
         stock.setProductQuantity(quantity);
@@ -86,6 +84,7 @@ public class ProductController implements ActionListener {
 
         view.dispose();
         this.cleanFields();
+        this.notifyObservers();
     }
 
     private void getListOfSuppliers() {

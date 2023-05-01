@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ProductModel extends Database {
+public class ProductModel {
 
     private int id;
     private String name;
@@ -14,20 +14,13 @@ public class ProductModel extends Database {
     private float price;
     private int supplier;
 
-    public ProductModel(int id, String name, String barcode, float price, int supplier) {
-        this.id = id;
-        this.name = name;
-        this.barcode = barcode;
-        this.price = price;
-        this.supplier = supplier;
-    }
-
     public ProductModel() {
+        super();
     }
 
     public boolean addProduct() {
         String query = "INSERT INTO products (name, barcode, price, supplier) VALUES (?,?,?,?)";
-        Connection con = this.getConnection();
+        Connection con = Database.getConnection();
 
         if (con == null) {
             return false;

@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class StockModel extends Database {
+public class StockModel {
 
     private int productID;
     private String productName;
@@ -16,7 +16,7 @@ public class StockModel extends Database {
 
     public boolean addStock() {
         String query = "INSERT INTO stock (product, quantity) VALUES (?,?)";
-        Connection con = this.getConnection();
+        Connection con = Database.getConnection();
 
         if (con == null) {
             return false;
@@ -28,6 +28,7 @@ public class StockModel extends Database {
 
             int insertedRows = ps.executeUpdate();
             boolean addedSuccessfully = insertedRows == 1;
+
             ps.close();
             con.close();
 
@@ -40,7 +41,7 @@ public class StockModel extends Database {
     public ArrayList<StockModel> getAllProductsByName() {
         ArrayList<StockModel> list = new ArrayList<>();
         String query = "SELECT products.*, stock.quantity FROM products JOIN stock ON products.id = stock.product WHERE products.name LIKE '%" + this.getProductName() + "%'";
-        Connection con = this.getConnection();
+        Connection con = Database.getConnection();
 
         if (this.getProductName().trim().equals("")) {
             query = "SELECT products.*, stock.quantity FROM products JOIN stock ON products.id = stock.product";
@@ -52,10 +53,12 @@ public class StockModel extends Database {
 
             while (rs.next()) {
                 StockModel product = new StockModel();
+
                 product.setProductID(Integer.parseInt(rs.getString("id")));
                 product.setProductName(rs.getString("name"));
                 product.setProductPrice(Float.parseFloat(rs.getString("price")));
                 product.setProductQuantity(Integer.parseInt(rs.getString("quantity")));
+
                 list.add(product);
             }
 

@@ -1,5 +1,6 @@
 package controller;
 
+import app.Observer;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +14,7 @@ import view.ProductForm;
 import view.StockView;
 import view.SupplierForm;
 
-public class StockController implements ActionListener {
+public class StockController implements ActionListener, Observer {
 
     private final StockModel model;
     private final StockView view;
@@ -38,7 +39,8 @@ public class StockController implements ActionListener {
         view.inputSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                if (evt.getKeyCode() == KeyEvent.VK_ENTER
+                        && !view.inputSearch.getText().equals("")) {
                     filterProductsByName();
                 }
             }
@@ -46,13 +48,7 @@ public class StockController implements ActionListener {
     }
 
     private void filterProductsByName() {
-        String searchText = view.inputSearch.getText();
-
-        if (searchText.equals(model.getProductName())) {
-            return;
-        }
-
-        model.setProductName(searchText);
+        model.setProductName(view.inputSearch.getText());
 
         Component titleName = view.name.getComponents()[0];
         Component titlePrice = view.price.getComponents()[0];
@@ -70,7 +66,7 @@ public class StockController implements ActionListener {
         int index = 0;
 
         for (StockModel product : model.getAllProductsByName()) {
-            JPanel cellName = view.createCellTable((index + 1) + ". " + product.getProductName());
+            JPanel cellName = view.createCellTable(product.getProductName());
             view.name.add(cellName, new AbsoluteConstraints(2, height, 308, 40));
 
             JPanel cellPrice = view.createCellTable(String.valueOf(product.getProductPrice()));
@@ -90,7 +86,10 @@ public class StockController implements ActionListener {
     private void showProductForm() {
         ProductModel productModel = new ProductModel();
         ProductForm productView = ProductForm.getInstance();
-        (new ProductController(productModel, productView)).launchView();
+        ProductController controller = new ProductController(productModel, productView);
+
+        controller.attach(this);
+        controller.launchView();
     }
 
     private void showSupplierForm() {
@@ -106,5 +105,10 @@ public class StockController implements ActionListener {
         } else if (e.getSource() == view.btnAddSupplier) {
             showSupplierForm();
         }
+    }
+
+    @Override
+    public void update() {
+        filterProductsByName();
     }
 }

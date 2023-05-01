@@ -6,11 +6,11 @@ import java.sql.SQLException;
 
 public class Database {
 
-    final String FILENAME = "inventario.db";
-    final String DRIVER = "org.sqlite.JDBC";
-    final String URL = "jdbc:sqlite:" + FILENAME;
+    public static final String FILENAME = "inventario.db";
+    public static final String DRIVER = "org.sqlite.JDBC";
+    public static final String URL = "jdbc:sqlite:" + FILENAME;
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
         try {
             Class.forName(DRIVER);
             Connection con = DriverManager.getConnection(URL);
