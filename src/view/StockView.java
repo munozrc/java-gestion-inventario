@@ -123,7 +123,7 @@ public class StockView extends javax.swing.JFrame {
         table.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         name.setBackground(new java.awt.Color(255, 255, 255));
-        name.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 0, new java.awt.Color(227, 227, 227)));
+        name.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 0, new java.awt.Color(227, 227, 227)));
         name.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         nameWrapper.setBackground(new java.awt.Color(246, 246, 246));
@@ -140,7 +140,7 @@ public class StockView extends javax.swing.JFrame {
         table.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 340));
 
         price.setBackground(new java.awt.Color(255, 255, 255));
-        price.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 0, new java.awt.Color(227, 227, 227)));
+        price.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 0, new java.awt.Color(227, 227, 227)));
         price.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         priceWrapper.setBackground(new java.awt.Color(246, 246, 246));
@@ -158,7 +158,7 @@ public class StockView extends javax.swing.JFrame {
         table.add(price, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 175, 340));
 
         quantity.setBackground(new java.awt.Color(255, 255, 255));
-        quantity.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 0, new java.awt.Color(227, 227, 227)));
+        quantity.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 0, new java.awt.Color(227, 227, 227)));
         quantity.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         quantityWrapper.setBackground(new java.awt.Color(246, 246, 246));
@@ -175,7 +175,7 @@ public class StockView extends javax.swing.JFrame {
         table.add(quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 0, 95, 340));
 
         actions.setBackground(new java.awt.Color(255, 255, 255));
-        actions.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(227, 227, 227)));
+        actions.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(227, 227, 227)));
         actions.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         actionsWrapper.setBackground(new java.awt.Color(246, 246, 246));

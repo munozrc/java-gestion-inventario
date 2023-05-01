@@ -202,7 +202,7 @@
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-                    <MatteColorBorder bottom="2" left="2" right="0" top="2">
+                    <MatteColorBorder bottom="1" left="1" right="0" top="1">
                       <Color PropertyName="color" blue="e3" green="e3" red="e3" type="rgb"/>
                     </MatteColorBorder>
                   </Border>
@@ -264,7 +264,7 @@
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-                    <MatteColorBorder bottom="2" left="2" right="0" top="2">
+                    <MatteColorBorder bottom="1" left="1" right="0" top="1">
                       <Color PropertyName="color" blue="e3" green="e3" red="e3" type="rgb"/>
                     </MatteColorBorder>
                   </Border>
@@ -327,7 +327,7 @@
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-                    <MatteColorBorder bottom="2" left="2" right="0" top="2">
+                    <MatteColorBorder bottom="1" left="1" right="0" top="1">
                       <Color PropertyName="color" blue="e3" green="e3" red="e3" type="rgb"/>
                     </MatteColorBorder>
                   </Border>
@@ -389,7 +389,7 @@
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-                    <MatteColorBorder bottom="2" left="2" right="2" top="2">
+                    <MatteColorBorder>
                       <Color PropertyName="color" blue="e3" green="e3" red="e3" type="rgb"/>
                     </MatteColorBorder>
                   </Border>
