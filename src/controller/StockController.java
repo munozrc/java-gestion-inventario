@@ -30,7 +30,8 @@ public class StockController implements ActionListener {
     }
 
     private void initializeListeners() {
-//        window.buttonAddProduct.addActionListener(this);
+        view.btnAddProduct.addActionListener(this);
+        view.btnAddSupplier.addActionListener(this);
     }
 
     private void showProductForm() {
@@ -47,9 +48,11 @@ public class StockController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-//        if (e.getSource() == window.buttonAddProduct) {
-//            showProductForm();
-//        }
+        if (e.getSource() == view.btnAddProduct) {
+            showProductForm();
+        } else if (e.getSource() == view.btnAddSupplier) {
+            showSupplierForm();
+        }
     }
 
     private void printProduct() {

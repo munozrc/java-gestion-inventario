@@ -57,6 +57,9 @@ public class StockView extends javax.swing.JFrame {
         actions = new javax.swing.JPanel();
         actionsWrapper = new javax.swing.JPanel();
         actionsLabel = new javax.swing.JLabel();
+        buttonGroup = new javax.swing.JPanel();
+        btnAddSupplier = new javax.swing.JButton();
+        btnAddProduct = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Window"); // NOI18N
@@ -85,7 +88,7 @@ public class StockView extends javax.swing.JFrame {
 
         searchbar.setBackground(new java.awt.Color(64, 64, 64));
 
-        searchIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/SearchIcon.png"))); // NOI18N
+        searchIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/search_icon.png"))); // NOI18N
 
         inputSearch.setBackground(new java.awt.Color(64, 64, 64));
         inputSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -134,7 +137,7 @@ public class StockView extends javax.swing.JFrame {
 
         name.add(nameWrapper, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 308, 33));
 
-        table.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 402));
+        table.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 340));
 
         price.setBackground(new java.awt.Color(255, 255, 255));
         price.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 0, new java.awt.Color(227, 227, 227)));
@@ -152,7 +155,7 @@ public class StockView extends javax.swing.JFrame {
 
         price.add(priceWrapper, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 173, 33));
 
-        table.add(price, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 175, 402));
+        table.add(price, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 175, 340));
 
         quantity.setBackground(new java.awt.Color(255, 255, 255));
         quantity.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 0, new java.awt.Color(227, 227, 227)));
@@ -169,7 +172,7 @@ public class StockView extends javax.swing.JFrame {
 
         quantity.add(quantityWrapper, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 93, 33));
 
-        table.add(quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 0, 95, 402));
+        table.add(quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 0, 95, 340));
 
         actions.setBackground(new java.awt.Color(255, 255, 255));
         actions.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(227, 227, 227)));
@@ -186,27 +189,54 @@ public class StockView extends javax.swing.JFrame {
 
         actions.add(actionsWrapper, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 186, 33));
 
-        table.add(actions, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 190, 402));
+        table.add(actions, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 190, 340));
+
+        buttonGroup.setBackground(new java.awt.Color(243, 243, 243));
+        buttonGroup.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(229, 229, 229)));
+        buttonGroup.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnAddSupplier.setBackground(new java.awt.Color(234, 234, 234));
+        btnAddSupplier.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        btnAddSupplier.setForeground(new java.awt.Color(102, 102, 102));
+        btnAddSupplier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/add_icon.png"))); // NOI18N
+        btnAddSupplier.setText("Proveedor  ");
+        btnAddSupplier.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 1, new java.awt.Color(229, 229, 229)));
+        btnAddSupplier.setContentAreaFilled(false);
+        btnAddSupplier.setFocusPainted(false);
+        buttonGroup.add(btnAddSupplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 130, 36));
+
+        btnAddProduct.setBackground(new java.awt.Color(234, 234, 234));
+        btnAddProduct.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        btnAddProduct.setForeground(new java.awt.Color(102, 102, 102));
+        btnAddProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/add_icon.png"))); // NOI18N
+        btnAddProduct.setText("Producto  ");
+        btnAddProduct.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 1, new java.awt.Color(229, 229, 229)));
+        btnAddProduct.setContentAreaFilled(false);
+        btnAddProduct.setFocusPainted(false);
+        buttonGroup.add(btnAddProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 130, 36));
 
         javax.swing.GroupLayout containerLayout = new javax.swing.GroupLayout(container);
         container.setLayout(containerLayout);
         containerLayout.setHorizontalGroup(
             containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(containerLayout.createSequentialGroup()
-                .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(table, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
+            .addGroup(containerLayout.createSequentialGroup()
+                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonGroup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         containerLayout.setVerticalGroup(
             containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(containerLayout.createSequentialGroup()
                 .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(table, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addComponent(table, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(buttonGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         getContentPane().add(container);
@@ -220,6 +250,9 @@ public class StockView extends javax.swing.JFrame {
     private javax.swing.JPanel actionsWrapper;
     private javax.swing.JLabel brand;
     private javax.swing.JLabel branddot;
+    public javax.swing.JButton btnAddProduct;
+    public javax.swing.JButton btnAddSupplier;
+    private javax.swing.JPanel buttonGroup;
     private javax.swing.JPanel container;
     private javax.swing.JTextField inputSearch;
     private javax.swing.JPanel menu;
