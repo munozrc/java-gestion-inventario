@@ -47,6 +47,7 @@ public class StockController implements ActionListener, Observer {
         });
     }
 
+    // TODO: Move create and persistan cell titles to view - refactor
     private void filterProductsByName() {
         model.setProductName(view.inputSearch.getText());
 

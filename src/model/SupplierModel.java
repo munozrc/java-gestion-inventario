@@ -1,14 +1,13 @@
 package model;
 
 import app.Database;
-import app.Observable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class SupplierModel extends Observable {
+public class SupplierModel {
 
     private int id;
     private String name;
