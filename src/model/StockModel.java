@@ -37,12 +37,17 @@ public class StockModel extends Database {
         }
     }
 
-    public ArrayList<StockModel> getAllProducts() {
-        String query = "SELECT products.*, stock.quantity FROM products JOIN stock ON products.id = stock.product";
+    public ArrayList<StockModel> getAllProductsByName() {
         ArrayList<StockModel> list = new ArrayList<>();
+        String query = "SELECT products.*, stock.quantity FROM products JOIN stock ON products.id = stock.product WHERE products.name LIKE '%" + this.getProductName() + "%'";
         Connection con = this.getConnection();
 
-        try (PreparedStatement ps = con.prepareStatement(query)) {
+        if (this.getProductName().trim().equals("")) {
+            query = "SELECT products.*, stock.quantity FROM products JOIN stock ON products.id = stock.product";
+        }
+
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {

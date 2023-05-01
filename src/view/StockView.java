@@ -254,7 +254,7 @@ public class StockView extends javax.swing.JFrame {
     public javax.swing.JButton btnAddSupplier;
     private javax.swing.JPanel buttonGroup;
     private javax.swing.JPanel container;
-    private javax.swing.JTextField inputSearch;
+    public javax.swing.JTextField inputSearch;
     private javax.swing.JPanel menu;
     public javax.swing.JPanel name;
     private javax.swing.JLabel nameLabel;
