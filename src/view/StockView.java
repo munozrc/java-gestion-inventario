@@ -1,9 +1,31 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 public class StockView extends javax.swing.JFrame {
 
     public StockView() {
         initComponents();
+    }
+
+    public JPanel createCellTable(String value) {
+        JPanel cell = new JPanel();
+        cell.setBackground(new java.awt.Color(255, 255, 255));
+        cell.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(227, 227, 227)));
+        cell.setLayout(new BoxLayout(cell, BoxLayout.LINE_AXIS));
+
+        JLabel text = new JLabel();
+        text.setFont(new Font("Segoe UI", 1, 12));
+        text.setForeground(new Color(91, 93, 95));
+        text.setText("    " + value);
+        cell.add(text);
+
+        return cell;
     }
 
     /**
@@ -22,14 +44,26 @@ public class StockView extends javax.swing.JFrame {
         searchbar = new javax.swing.JPanel();
         searchIcon = new javax.swing.JLabel();
         inputSearch = new javax.swing.JTextField();
-        buttonAddProduct = new javax.swing.JButton();
+        table = new javax.swing.JPanel();
+        name = new javax.swing.JPanel();
+        nameWrapper = new javax.swing.JPanel();
+        nameLabel = new javax.swing.JLabel();
+        price = new javax.swing.JPanel();
+        priceWrapper = new javax.swing.JPanel();
+        priceLabel = new javax.swing.JLabel();
+        quantity = new javax.swing.JPanel();
+        quantityWrapper = new javax.swing.JPanel();
+        quantityLabel = new javax.swing.JLabel();
+        actions = new javax.swing.JPanel();
+        actionsWrapper = new javax.swing.JPanel();
+        actionsLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Window"); // NOI18N
         setResizable(false);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
-        container.setBackground(new java.awt.Color(243, 243, 243));
+        container.setBackground(new java.awt.Color(247, 247, 247));
 
         menu.setBackground(new java.awt.Color(16, 16, 16));
         menu.setMaximumSize(new java.awt.Dimension(800, 45));
@@ -82,25 +116,97 @@ public class StockView extends javax.swing.JFrame {
 
         menu.add(searchbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 300, 45));
 
-        buttonAddProduct.setText("+");
+        table.setBackground(new java.awt.Color(255, 255, 255));
+        table.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        name.setBackground(new java.awt.Color(255, 255, 255));
+        name.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 0, new java.awt.Color(227, 227, 227)));
+        name.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        nameWrapper.setBackground(new java.awt.Color(246, 246, 246));
+        nameWrapper.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(227, 227, 227)));
+        nameWrapper.setLayout(new javax.swing.BoxLayout(nameWrapper, javax.swing.BoxLayout.LINE_AXIS));
+
+        nameLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        nameLabel.setForeground(new java.awt.Color(150, 149, 157));
+        nameLabel.setText("    Nombre");
+        nameWrapper.add(nameLabel);
+
+        name.add(nameWrapper, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 308, 33));
+
+        table.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 402));
+
+        price.setBackground(new java.awt.Color(255, 255, 255));
+        price.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 0, new java.awt.Color(227, 227, 227)));
+        price.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        priceWrapper.setBackground(new java.awt.Color(246, 246, 246));
+        priceWrapper.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(227, 227, 227)));
+        priceWrapper.setToolTipText("");
+        priceWrapper.setLayout(new javax.swing.BoxLayout(priceWrapper, javax.swing.BoxLayout.LINE_AXIS));
+
+        priceLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        priceLabel.setForeground(new java.awt.Color(150, 149, 157));
+        priceLabel.setText("    Precio");
+        priceWrapper.add(priceLabel);
+
+        price.add(priceWrapper, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 173, 33));
+
+        table.add(price, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 175, 402));
+
+        quantity.setBackground(new java.awt.Color(255, 255, 255));
+        quantity.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 0, new java.awt.Color(227, 227, 227)));
+        quantity.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        quantityWrapper.setBackground(new java.awt.Color(246, 246, 246));
+        quantityWrapper.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(227, 227, 227)));
+        quantityWrapper.setLayout(new javax.swing.BoxLayout(quantityWrapper, javax.swing.BoxLayout.LINE_AXIS));
+
+        quantityLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        quantityLabel.setForeground(new java.awt.Color(150, 149, 157));
+        quantityLabel.setText("    Cantidad");
+        quantityWrapper.add(quantityLabel);
+
+        quantity.add(quantityWrapper, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 93, 33));
+
+        table.add(quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 0, 95, 402));
+
+        actions.setBackground(new java.awt.Color(255, 255, 255));
+        actions.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(227, 227, 227)));
+        actions.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        actionsWrapper.setBackground(new java.awt.Color(246, 246, 246));
+        actionsWrapper.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(227, 227, 227)));
+        actionsWrapper.setLayout(new javax.swing.BoxLayout(actionsWrapper, javax.swing.BoxLayout.LINE_AXIS));
+
+        actionsLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        actionsLabel.setForeground(new java.awt.Color(150, 149, 157));
+        actionsLabel.setText("    Acciones");
+        actionsWrapper.add(actionsLabel);
+
+        actions.add(actionsWrapper, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 186, 33));
+
+        table.add(actions, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 190, 402));
 
         javax.swing.GroupLayout containerLayout = new javax.swing.GroupLayout(container);
         container.setLayout(containerLayout);
         containerLayout.setHorizontalGroup(
             containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(containerLayout.createSequentialGroup()
+                .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerLayout.createSequentialGroup()
-                .addGap(165, 165, 165)
-                .addComponent(buttonAddProduct)
-                .addGap(151, 151, 151))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(table, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
         containerLayout.setVerticalGroup(
             containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(containerLayout.createSequentialGroup()
                 .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(buttonAddProduct)
-                .addGap(0, 407, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(table, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         getContentPane().add(container);
@@ -109,13 +215,25 @@ public class StockView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JPanel actions;
+    private javax.swing.JLabel actionsLabel;
+    private javax.swing.JPanel actionsWrapper;
     private javax.swing.JLabel brand;
     private javax.swing.JLabel branddot;
-    public javax.swing.JButton buttonAddProduct;
     private javax.swing.JPanel container;
     private javax.swing.JTextField inputSearch;
     private javax.swing.JPanel menu;
+    public javax.swing.JPanel name;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JPanel nameWrapper;
+    public javax.swing.JPanel price;
+    private javax.swing.JLabel priceLabel;
+    private javax.swing.JPanel priceWrapper;
+    public javax.swing.JPanel quantity;
+    private javax.swing.JLabel quantityLabel;
+    private javax.swing.JPanel quantityWrapper;
     private javax.swing.JLabel searchIcon;
     private javax.swing.JPanel searchbar;
+    private javax.swing.JPanel table;
     // End of variables declaration//GEN-END:variables
 }

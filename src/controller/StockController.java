@@ -2,9 +2,11 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JPanel;
 import model.ProductModel;
 import model.StockModel;
 import model.SupplierModel;
+import org.netbeans.lib.awtextra.AbsoluteConstraints;
 import view.ProductForm;
 import view.StockView;
 import view.SupplierForm;
@@ -12,22 +14,23 @@ import view.SupplierForm;
 public class StockController implements ActionListener {
 
     private final StockModel model;
-    private final StockView window;
+    private final StockView view;
 
     public StockController(StockModel model, StockView view) {
         this.model = model;
-        this.window = view;
+        this.view = view;
         initializeListeners();
+        printProduct();
     }
 
     public void launchView() {
-        window.setTitle("Gestion de Inventario");
-        window.setLocationRelativeTo(null);
-        window.setVisible(true);
+        view.setTitle("Gestion de Inventario");
+        view.setLocationRelativeTo(null);
+        view.setVisible(true);
     }
 
     private void initializeListeners() {
-        window.buttonAddProduct.addActionListener(this);
+//        window.buttonAddProduct.addActionListener(this);
     }
 
     private void showProductForm() {
@@ -44,9 +47,27 @@ public class StockController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == window.buttonAddProduct) {
-            showProductForm();
-        }
+//        if (e.getSource() == window.buttonAddProduct) {
+//            showProductForm();
+//        }
     }
 
+    private void printProduct() {
+        int height = 35;
+        int index = 0;
+
+        for (StockModel product : model.getAllProducts()) {
+            JPanel cellName = view.createCellTable((index + 1) + ". " + product.getProductName());
+            view.name.add(cellName, new AbsoluteConstraints(2, height, 308, 40));
+
+            JPanel cellPrice = view.createCellTable(String.valueOf(product.getProductPrice()));
+            view.price.add(cellPrice, new AbsoluteConstraints(2, height, 173, 40));
+
+            JPanel cellQuantity = view.createCellTable(String.valueOf(product.getProductQuantity()));
+            view.quantity.add(cellQuantity, new AbsoluteConstraints(2, height, 93, 40));
+
+            height += 40;
+            index++;
+        }
+    }
 }

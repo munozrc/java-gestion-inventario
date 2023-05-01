@@ -3,7 +3,9 @@ package model;
 import app.Database;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class StockModel extends Database {
 
@@ -11,31 +13,6 @@ public class StockModel extends Database {
     private String productName;
     private float productPrice;
     private int productQuantity;
-
-    private int providerID;
-    private String providerName;
-    private String providerAddress;
-
-    public StockModel(
-            int productID,
-            String productName,
-            float productPrice,
-            int productStock,
-            int providerID,
-            String providerName,
-            String providerAddress
-    ) {
-        this.productID = productID;
-        this.productName = productName;
-        this.productPrice = productPrice;
-        this.productQuantity = productStock;
-        this.providerID = providerID;
-        this.providerName = providerName;
-        this.providerAddress = providerAddress;
-    }
-
-    public StockModel() {
-    }
 
     public boolean addStock() {
         String query = "INSERT INTO stock (product, quantity) VALUES (?,?)";
@@ -57,6 +34,29 @@ public class StockModel extends Database {
             return addedSuccessfully;
         } catch (SQLException e) {
             return false;
+        }
+    }
+
+    public ArrayList<StockModel> getAllProducts() {
+        String query = "SELECT products.*, stock.quantity FROM products JOIN stock ON products.id = stock.product";
+        ArrayList<StockModel> list = new ArrayList<>();
+        Connection con = this.getConnection();
+
+        try (PreparedStatement ps = con.prepareStatement(query)) {
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                StockModel product = new StockModel();
+                product.setProductID(Integer.parseInt(rs.getString("id")));
+                product.setProductName(rs.getString("name"));
+                product.setProductPrice(Float.parseFloat(rs.getString("price")));
+                product.setProductQuantity(Integer.parseInt(rs.getString("quantity")));
+                list.add(product);
+            }
+
+            return list;
+        } catch (SQLException e) {
+            return list;
         }
     }
 
@@ -90,30 +90,6 @@ public class StockModel extends Database {
 
     public void setProductQuantity(int productQuantity) {
         this.productQuantity = productQuantity;
-    }
-
-    public int getProviderID() {
-        return providerID;
-    }
-
-    public void setProviderID(int providerID) {
-        this.providerID = providerID;
-    }
-
-    public String getProviderName() {
-        return providerName;
-    }
-
-    public void setProviderName(String providerName) {
-        this.providerName = providerName;
-    }
-
-    public String getProviderAddress() {
-        return providerAddress;
-    }
-
-    public void setProviderAddress(String providerAddress) {
-        this.providerAddress = providerAddress;
     }
 
 }
