@@ -38,7 +38,7 @@ public class SupplierModel {
         return matcher.matches();
     }
 
-    public boolean addProvider() {
+    public boolean save() {
         String query = "INSERT INTO suppliers (name, email) VALUES (?,?)";
         Connection con = Database.getConnection();
 

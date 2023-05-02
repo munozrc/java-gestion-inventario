@@ -18,7 +18,7 @@ public class SupplierFacade {
         this.email = email;
     }
 
-    public boolean AddNewSupplier() {
+    public boolean save() {
         SupplierModel objSupplier = new SupplierModel(id, name, email);
 
         boolean isValidData = true;
@@ -40,6 +40,6 @@ public class SupplierFacade {
             return false;
         }
 
-        return objSupplier.addProvider();
+        return objSupplier.save();
     }
 }

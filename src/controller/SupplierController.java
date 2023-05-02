@@ -31,7 +31,7 @@ public class SupplierController implements ActionListener {
         modelFacade.setName(view.nameText.getText());
         modelFacade.setEmail(view.emailText.getText());
 
-        if (!modelFacade.AddNewSupplier()) {
+        if (!modelFacade.save()) {
             return;
         }
 
