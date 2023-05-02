@@ -65,7 +65,7 @@ public class ProductController implements ActionListener {
         this.model.setPrice(price);
         this.model.setSupplier(idSupplier);
 
-        if (!model.addProduct(quantity)) {
+        if (!model.save(quantity)) {
             // TODO: show JOptionPane "Fallo al guardar producto"
             return;
         }

@@ -3,6 +3,7 @@ package app;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import org.sqlite.SQLiteConfig;
 
 public class Database {
 
@@ -13,8 +14,14 @@ public class Database {
     public static Connection getConnection() {
         try {
             Class.forName(DRIVER);
-            Connection con = DriverManager.getConnection(URL);
+
+            // It appears that SQLite does not enforce foreign keys by default.
+            SQLiteConfig config = new SQLiteConfig();
+            config.enforceForeignKeys(true);
+
+            Connection con = DriverManager.getConnection(URL, config.toProperties());
             System.out.println("[OK] Connection database is succeded");
+
             return con;
         } catch (ClassNotFoundException | SQLException e) {
             System.err.print("[FAIL] Connection database failed " + e);

@@ -81,7 +81,7 @@ public class StockController implements ActionListener, Observer {
             });
 
             btnDeleteProduct.addActionListener((ActionEvent e) -> {
-                System.out.println("DeleteProduct");
+                deleteProduct(product.getProductID());
             });
 
             view.actions.add(cellActions, new AbsoluteConstraints(2, height, 111, 35));
@@ -105,6 +105,19 @@ public class StockController implements ActionListener, Observer {
         SupplierFacade supplierFacade = new SupplierFacade();
         SupplierForm supplierView = SupplierForm.getInstance();
         (new SupplierController(supplierFacade, supplierView)).launchView();
+    }
+
+    private void deleteProduct(int productID) {
+        ProductModel productModel = new ProductModel();
+        productModel.attach(this);
+        productModel.setId(productID);
+
+        if (!productModel.delete()) {
+            // TODO: Show JOptionPane with message "Fallo al eliminar el producto"
+            // return;
+        }
+
+        // TODO: Show JOptionPane with message "Producto eliminado!"
     }
 
     @Override

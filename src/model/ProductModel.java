@@ -19,7 +19,7 @@ public class ProductModel extends Observable {
         super();
     }
 
-    public boolean addProduct(int quantity) {
+    public boolean save(int quantity) {
         String queryProduct = "INSERT INTO products (name, barcode, price, supplier) VALUES (?,?,?,?)";
         String queryStock = "INSERT INTO stock (product, quantity) VALUES (?,?)";
         Connection con = Database.getConnection();
@@ -79,6 +79,29 @@ public class ProductModel extends Observable {
                 this.notifyObservers();
             } catch (SQLException e) {
             }
+        }
+    }
+
+    public boolean delete() {
+        String query = "DELETE FROM products WHERE id = ?";
+        Connection con = Database.getConnection();
+
+        if (con == null) {
+            return false;
+        }
+
+        try (PreparedStatement pstmt = con.prepareStatement(query)) {
+            pstmt.setInt(1, this.getId());
+            int deletedRows = pstmt.executeUpdate();
+            boolean deletedProduct = deletedRows == 1;
+
+            pstmt.close();
+            con.close();
+            notifyObservers();
+
+            return deletedProduct;
+        } catch (Exception e) {
+            return false;
         }
     }
 
