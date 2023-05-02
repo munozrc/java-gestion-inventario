@@ -5,9 +5,12 @@ import java.awt.Component;
 import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import org.netbeans.lib.awtextra.AbsoluteConstraints;
+import org.netbeans.lib.awtextra.AbsoluteLayout;
 
 public class StockView extends javax.swing.JFrame {
 
@@ -30,18 +33,49 @@ public class StockView extends javax.swing.JFrame {
         return cell;
     }
 
+    public JPanel createActionTable() {
+        JPanel actionButtons = new JPanel();
+        JButton btnEditProduct = new JButton();
+        JButton btnDeleteProduct = new JButton();
+
+        actionButtons.setBackground(new Color(255, 255, 255));
+        actionButtons.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(227, 227, 227)));
+        actionButtons.setLayout(new AbsoluteLayout());
+
+        btnEditProduct.setIcon(new ImageIcon(getClass().getResource("/assets/edit_active_icon.png"))); // NOI18N
+        btnEditProduct.setBorder(null);
+        btnEditProduct.setBorderPainted(false);
+        btnEditProduct.setContentAreaFilled(false);
+        btnEditProduct.setFocusPainted(false);
+        btnEditProduct.setRolloverEnabled(false);
+        actionButtons.add(btnEditProduct, new AbsoluteConstraints(5, 0, 30, 35));
+
+        btnDeleteProduct.setIcon(new ImageIcon(getClass().getResource("/assets/delete_active_icon.png"))); // NOI18N
+        btnDeleteProduct.setBorder(null);
+        btnDeleteProduct.setBorderPainted(false);
+        btnDeleteProduct.setContentAreaFilled(false);
+        btnDeleteProduct.setFocusPainted(false);
+        btnDeleteProduct.setRolloverEnabled(false);
+        actionButtons.add(btnDeleteProduct, new AbsoluteConstraints(35, 0, 30, 35));
+
+        return actionButtons;
+    }
+
     public void cleanTable() {
         Component titleName = this.name.getComponents()[0];
         Component titlePrice = this.price.getComponents()[0];
         Component titleQuantity = this.quantity.getComponents()[0];
+        Component titleActions = this.actions.getComponents()[0];
 
         this.name.removeAll();
         this.price.removeAll();
         this.quantity.removeAll();
+        this.actions.removeAll();
 
         this.name.add(titleName, new AbsoluteConstraints(2, 2, 308, 33));
-        this.price.add(titlePrice, new AbsoluteConstraints(2, 2, 173, 33));
-        this.quantity.add(titleQuantity, new AbsoluteConstraints(2, 2, 93, 33));
+        this.price.add(titlePrice, new AbsoluteConstraints(2, 2, 213, 33));
+        this.quantity.add(titleQuantity, new AbsoluteConstraints(2, 2, 130, 33));
+        this.actions.add(titleActions, new AbsoluteConstraints(2, 2, 111, 33));
     }
 
     /**
@@ -121,7 +155,7 @@ public class StockView extends javax.swing.JFrame {
                 .addComponent(searchIcon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(inputSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         searchbarLayout.setVerticalGroup(
             searchbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +167,7 @@ public class StockView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        menu.add(searchbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 300, 45));
+        menu.add(searchbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 260, 45));
 
         table.setBackground(new java.awt.Color(255, 255, 255));
         table.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -169,9 +203,9 @@ public class StockView extends javax.swing.JFrame {
         priceLabel.setText("    Precio");
         priceWrapper.add(priceLabel);
 
-        price.add(priceWrapper, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 173, 33));
+        price.add(priceWrapper, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 213, 33));
 
-        table.add(price, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 175, 345));
+        table.add(price, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 215, 345));
 
         quantity.setBackground(new java.awt.Color(255, 255, 255));
         quantity.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 0, new java.awt.Color(227, 227, 227)));
@@ -186,9 +220,9 @@ public class StockView extends javax.swing.JFrame {
         quantityLabel.setText("    Cantidad");
         quantityWrapper.add(quantityLabel);
 
-        quantity.add(quantityWrapper, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 93, 33));
+        quantity.add(quantityWrapper, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 130, 33));
 
-        table.add(quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 0, 95, 345));
+        table.add(quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(525, 0, 130, 345));
 
         actions.setBackground(new java.awt.Color(255, 255, 255));
         actions.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(227, 227, 227)));
@@ -203,9 +237,9 @@ public class StockView extends javax.swing.JFrame {
         actionsLabel.setText("    Acciones");
         actionsWrapper.add(actionsLabel);
 
-        actions.add(actionsWrapper, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 186, 33));
+        actions.add(actionsWrapper, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 111, 33));
 
-        table.add(actions, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 190, 345));
+        table.add(actions, new org.netbeans.lib.awtextra.AbsoluteConstraints(655, 0, 115, 345));
 
         buttonGroup.setBackground(new java.awt.Color(243, 243, 243));
         buttonGroup.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(229, 229, 229)));

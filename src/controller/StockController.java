@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.text.NumberFormat;
 import java.util.Locale;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import model.ProductModel;
 import model.StockModel;
@@ -61,17 +62,31 @@ public class StockController implements ActionListener, Observer {
             }
 
             JPanel cellName = view.createCellTable(product.getProductName());
-            view.name.add(cellName, new AbsoluteConstraints(2, height, 308, 39));
+            view.name.add(cellName, new AbsoluteConstraints(2, height, 308, 35));
 
             String price = formatCurrencyCOP(product.getProductPrice());
             JPanel cellPrice = view.createCellTable(price);
-            view.price.add(cellPrice, new AbsoluteConstraints(2, height, 173, 39));
+            view.price.add(cellPrice, new AbsoluteConstraints(2, height, 213, 35));
 
             String quantity = String.valueOf(product.getProductQuantity());
             JPanel cellQuantity = view.createCellTable(quantity);
-            view.quantity.add(cellQuantity, new AbsoluteConstraints(2, height, 93, 39));
+            view.quantity.add(cellQuantity, new AbsoluteConstraints(2, height, 130, 35));
 
-            height += 39;
+            JPanel cellActions = view.createActionTable();
+            JButton btnEditProduct = (JButton) cellActions.getComponent(0);
+            JButton btnDeleteProduct = (JButton) cellActions.getComponent(1);
+
+            btnEditProduct.addActionListener((ActionEvent e) -> {
+                System.out.println("EditProduct");
+            });
+
+            btnDeleteProduct.addActionListener((ActionEvent e) -> {
+                System.out.println("DeleteProduct");
+            });
+
+            view.actions.add(cellActions, new AbsoluteConstraints(2, height, 111, 35));
+
+            height += 35;
             index++;
         }
 
