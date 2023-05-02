@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SupplierModel {
 
@@ -14,14 +16,26 @@ public class SupplierModel {
     private String email;
 
     public SupplierModel(int id, String name, String email) {
-        super();
         this.id = id;
         this.name = name;
         this.email = email;
     }
 
     public SupplierModel() {
-        super();
+    }
+
+    public boolean isValidField() {
+        String parseName = this.getName().trim();
+        String parseEmail = this.getEmail().trim();
+        return !(parseName.equals("") && parseEmail.equals(""));
+    }
+
+    public boolean isValidEmail() {
+        String parseEmail = this.getEmail().trim();
+        String regex = "^[\\w.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(parseEmail);
+        return matcher.matches();
     }
 
     public boolean addProvider() {

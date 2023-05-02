@@ -9,7 +9,7 @@ import java.util.Locale;
 import javax.swing.JPanel;
 import model.ProductModel;
 import model.StockModel;
-import model.SupplierModel;
+import model.SupplierFacade;
 import org.netbeans.lib.awtextra.AbsoluteConstraints;
 import view.ProductForm;
 import view.StockView;
@@ -87,9 +87,9 @@ public class StockController implements ActionListener, Observer {
     }
 
     private void showSupplierForm() {
-        SupplierModel supplierModel = new SupplierModel();
+        SupplierFacade supplierFacade = new SupplierFacade();
         SupplierForm supplierView = SupplierForm.getInstance();
-        (new SupplierController(supplierModel, supplierView)).launchView();
+        (new SupplierController(supplierFacade, supplierView)).launchView();
     }
 
     @Override

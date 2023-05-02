@@ -2,18 +2,16 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import model.SupplierModel;
+import model.SupplierFacade;
 import view.SupplierForm;
 
 public class SupplierController implements ActionListener {
 
-    private final SupplierModel model;
+    private final SupplierFacade modelFacade;
     private final SupplierForm view;
 
-    public SupplierController(SupplierModel model, SupplierForm view) {
-        this.model = model;
+    public SupplierController(SupplierFacade modelFacade, SupplierForm view) {
+        this.modelFacade = modelFacade;
         this.view = view;
         initializeListeners();
     }
@@ -30,24 +28,10 @@ public class SupplierController implements ActionListener {
     }
 
     private void addProvider() {
-        String name = view.nameText.getText().trim();
-        String email = view.emailText.getText().trim();
+        modelFacade.setName(view.nameText.getText());
+        modelFacade.setEmail(view.emailText.getText());
 
-        if (name.equals("") || email.equals("")) {
-            // TODO: show JOptionPane "Campos vacios"
-            return;
-        }
-
-        if (!checkEmail(email)) {
-            // TODO: show JOptionPane "Email no valido"
-            return;
-        }
-
-        model.setName(name);
-        model.setEmail(email);
-
-        if (!model.addProvider()) {
-            // TODO: show JOptionPane "Fallo al guardar proveedor"
+        if (!modelFacade.AddNewSupplier()) {
             return;
         }
 
@@ -66,13 +50,6 @@ public class SupplierController implements ActionListener {
     }
 
     // Utility methods
-    private boolean checkEmail(String text) {
-        String regex = "^[\\w.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-        Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(text);
-        return matcher.matches();
-    }
-
     private void cleanFields() {
         view.nameText.setText("");
         view.emailText.setText("");
