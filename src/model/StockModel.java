@@ -16,11 +16,11 @@ public class StockModel {
 
     public ArrayList<StockModel> getProductsByName(String name) {
         ArrayList<StockModel> list = new ArrayList<>();
-        String query = "SELECT products.*, stock.quantity FROM products JOIN stock ON products.id = stock.product WHERE products.name LIKE '%" + name + "%'";
+        String query = "SELECT products.*, stock.quantity FROM products JOIN stock ON products.id = stock.product WHERE products.name LIKE '%" + name + "%' LIMIT 8";
         Connection con = Database.getConnection();
 
         if (name.trim().equals("")) {
-            query = "SELECT products.*, stock.quantity FROM products JOIN stock ON products.id = stock.product";
+            query = "SELECT products.*, stock.quantity FROM products JOIN stock ON products.id = stock.product LIMIT 8";
         }
 
         try {

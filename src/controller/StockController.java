@@ -50,17 +50,9 @@ public class StockController implements ActionListener, Observer {
 
     private void searchProductsByName(String query) {
         int height = 33;
-        int index = 0;
-        int productLimit = 8;
-
         view.cleanTable();
 
         for (StockModel product : model.getProductsByName(query)) {
-            if (index > productLimit) {
-                // TODO: implement pagination to display products;
-                break;
-            }
-
             JPanel cellName = view.createCellTable(product.getProductName());
             view.name.add(cellName, new AbsoluteConstraints(2, height, 308, 35));
 
@@ -77,6 +69,7 @@ public class StockController implements ActionListener, Observer {
             JButton btnDeleteProduct = (JButton) cellActions.getComponent(1);
 
             btnEditProduct.addActionListener((ActionEvent e) -> {
+                // TODO: Implements edit product
                 System.out.println("EditProduct");
             });
 
@@ -87,7 +80,6 @@ public class StockController implements ActionListener, Observer {
             view.actions.add(cellActions, new AbsoluteConstraints(2, height, 111, 35));
 
             height += 35;
-            index++;
         }
 
         view.revalidate();
