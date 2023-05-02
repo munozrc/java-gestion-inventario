@@ -54,8 +54,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="menu" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="table" min="-2" pref="350" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" pref="40" max="32767" attributes="0"/>
+                  <Component id="table" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="40" max="32767" attributes="0"/>
                   <Component id="buttonGroup" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>

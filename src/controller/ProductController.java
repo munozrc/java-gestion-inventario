@@ -1,16 +1,14 @@
 package controller;
 
-import app.Observable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import model.ProductModel;
 import model.SupplierModel;
-import model.StockModel;
 import view.ProductForm;
 
-public class ProductController extends Observable implements ActionListener {
+public class ProductController implements ActionListener {
 
     private final ProductForm view;
     private final ProductModel model;
@@ -67,24 +65,13 @@ public class ProductController extends Observable implements ActionListener {
         this.model.setPrice(price);
         this.model.setSupplier(idSupplier);
 
-        if (!model.addProduct()) {
-            // TODO: show JOptionPane "Fallo al guardar proveedor"
-            return;
-        }
-
-        StockModel stock = new StockModel();
-        stock.setProductID(this.model.getId());
-        stock.setProductQuantity(quantity);
-
-        if (!stock.addStock()) {
-            // TODO: Add instruction to delete a product
+        if (!model.addProduct(quantity)) {
             // TODO: show JOptionPane "Fallo al guardar producto"
             return;
         }
 
         view.dispose();
         this.cleanFields();
-        this.notifyObservers();
     }
 
     private void getListOfSuppliers() {

@@ -87,10 +87,8 @@ public class StockController implements ActionListener, Observer {
     private void showProductForm() {
         ProductModel productModel = new ProductModel();
         ProductForm productView = ProductForm.getInstance();
-        ProductController controller = new ProductController(productModel, productView);
-
-        controller.attach(this);
-        controller.launchView();
+        (new ProductController(productModel, productView)).launchView();
+        productModel.attach(this);
     }
 
     private void showSupplierForm() {

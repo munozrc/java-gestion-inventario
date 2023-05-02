@@ -14,30 +14,6 @@ public class StockModel {
     private float productPrice;
     private int productQuantity;
 
-    public boolean addStock() {
-        String query = "INSERT INTO stock (product, quantity) VALUES (?,?)";
-        Connection con = Database.getConnection();
-
-        if (con == null) {
-            return false;
-        }
-
-        try (PreparedStatement ps = con.prepareStatement(query)) {
-            ps.setInt(1, this.getProductID());
-            ps.setInt(2, this.getProductQuantity());
-
-            int insertedRows = ps.executeUpdate();
-            boolean addedSuccessfully = insertedRows == 1;
-
-            ps.close();
-            con.close();
-
-            return addedSuccessfully;
-        } catch (SQLException e) {
-            return false;
-        }
-    }
-
     public ArrayList<StockModel> getAllProductsByName() {
         ArrayList<StockModel> list = new ArrayList<>();
         String query = "SELECT products.*, stock.quantity FROM products JOIN stock ON products.id = stock.product WHERE products.name LIKE '%" + this.getProductName() + "%'";

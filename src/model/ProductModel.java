@@ -1,12 +1,13 @@
 package model;
 
 import app.Database;
+import app.Observable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ProductModel {
+public class ProductModel extends Observable {
 
     private int id;
     private String name;
@@ -18,35 +19,66 @@ public class ProductModel {
         super();
     }
 
-    public boolean addProduct() {
-        String query = "INSERT INTO products (name, barcode, price, supplier) VALUES (?,?,?,?)";
+    public boolean addProduct(int quantity) {
+        String queryProduct = "INSERT INTO products (name, barcode, price, supplier) VALUES (?,?,?,?)";
+        String queryStock = "INSERT INTO stock (product, quantity) VALUES (?,?)";
         Connection con = Database.getConnection();
 
         if (con == null) {
             return false;
         }
 
-        try (PreparedStatement ps = con.prepareStatement(query)) {
-            ps.setString(1, this.getName());
-            ps.setString(2, this.getBarcode());
-            ps.setFloat(3, this.getPrice());
-            ps.setInt(4, this.getSupplier());
-
-            int insertedRows = ps.executeUpdate();
-            boolean addedSuccessfully = insertedRows == 1;
-
-            try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    this.setId(generatedKeys.getInt(1));
-                }
-                generatedKeys.close();
-            }
-
-            ps.close();
-
-            return addedSuccessfully;
+        try {
+            con.setAutoCommit(false);
         } catch (SQLException e) {
             return false;
+        }
+
+        try {
+            boolean addedProduct;
+            int productID = 0;
+
+            try (PreparedStatement pstmtProduct = con.prepareStatement(queryProduct)) {
+                pstmtProduct.setString(1, this.getName());
+                pstmtProduct.setString(2, this.getBarcode());
+                pstmtProduct.setFloat(3, this.getPrice());
+                pstmtProduct.setInt(4, this.getSupplier());
+
+                int insertedRowsProduct = pstmtProduct.executeUpdate();
+                addedProduct = insertedRowsProduct == 1;
+
+                try (ResultSet generatedKeys = pstmtProduct.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        productID = generatedKeys.getInt(1);
+                    }
+                    generatedKeys.close();
+                }
+            }
+
+            boolean addedStock;
+
+            try (PreparedStatement pstmtStock = con.prepareStatement(queryStock)) {
+                pstmtStock.setInt(1, productID);
+                pstmtStock.setInt(2, quantity);
+                int insertedRowsStock = pstmtStock.executeUpdate();
+                addedStock = insertedRowsStock == 1;
+            }
+
+            con.commit();
+            return addedProduct && addedStock;
+        } catch (SQLException e) {
+            try {
+                con.rollback();
+            } catch (SQLException e2) {
+            }
+            return false;
+        } finally {
+            try {
+                con.setAutoCommit(true);
+                con.close();
+                this.notifyObservers();
+            } catch (SQLException e) {
+            }
         }
     }
 
