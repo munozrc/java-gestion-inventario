@@ -1,10 +1,11 @@
 package controller;
 
 import app.Observer;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.text.NumberFormat;
+import java.util.Locale;
 import javax.swing.JPanel;
 import model.ProductModel;
 import model.StockModel;
@@ -22,7 +23,7 @@ public class StockController implements ActionListener, Observer {
     public StockController(StockModel model, StockView view) {
         this.model = model;
         this.view = view;
-        filterProductsByName();
+        searchProductsByName("");
         initializeListeners();
     }
 
@@ -39,44 +40,38 @@ public class StockController implements ActionListener, Observer {
         view.inputSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                if (evt.getKeyCode() == KeyEvent.VK_ENTER
-                        && !view.inputSearch.getText().equals("")) {
-                    filterProductsByName();
+                if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                    searchProductsByName(view.inputSearch.getText());
                 }
             }
         });
     }
 
-    // TODO: Move create and persistan cell titles to view - refactor
-    private void filterProductsByName() {
-        model.setProductName(view.inputSearch.getText());
-
-        Component titleName = view.name.getComponents()[0];
-        Component titlePrice = view.price.getComponents()[0];
-        Component titleQuantity = view.quantity.getComponents()[0];
-
-        view.name.removeAll();
-        view.price.removeAll();
-        view.quantity.removeAll();
-
-        view.name.add(titleName, new AbsoluteConstraints(2, 2, 308, 33));
-        view.price.add(titlePrice, new AbsoluteConstraints(2, 2, 173, 33));
-        view.quantity.add(titleQuantity, new AbsoluteConstraints(2, 2, 93, 33));
-
-        int height = 35;
+    private void searchProductsByName(String query) {
+        int height = 33;
         int index = 0;
+        int productLimit = 8;
 
-        for (StockModel product : model.getAllProductsByName()) {
+        view.cleanTable();
+
+        for (StockModel product : model.getProductsByName(query)) {
+            if (index > productLimit) {
+                // TODO: implement pagination to display products;
+                break;
+            }
+
             JPanel cellName = view.createCellTable(product.getProductName());
-            view.name.add(cellName, new AbsoluteConstraints(2, height, 308, 40));
+            view.name.add(cellName, new AbsoluteConstraints(2, height, 308, 39));
 
-            JPanel cellPrice = view.createCellTable(String.valueOf(product.getProductPrice()));
-            view.price.add(cellPrice, new AbsoluteConstraints(2, height, 173, 40));
+            String price = formatCurrencyCOP(product.getProductPrice());
+            JPanel cellPrice = view.createCellTable(price);
+            view.price.add(cellPrice, new AbsoluteConstraints(2, height, 173, 39));
 
-            JPanel cellQuantity = view.createCellTable(String.valueOf(product.getProductQuantity()));
-            view.quantity.add(cellQuantity, new AbsoluteConstraints(2, height, 93, 40));
+            String quantity = String.valueOf(product.getProductQuantity());
+            JPanel cellQuantity = view.createCellTable(quantity);
+            view.quantity.add(cellQuantity, new AbsoluteConstraints(2, height, 93, 39));
 
-            height += 40;
+            height += 39;
             index++;
         }
 
@@ -108,6 +103,12 @@ public class StockController implements ActionListener, Observer {
 
     @Override
     public void update() {
-        filterProductsByName();
+        searchProductsByName("");
+    }
+
+    private String formatCurrencyCOP(float value) {
+        Locale localeColombia = new Locale("es", "CO");
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(localeColombia);
+        return currencyFormat.format(value);
     }
 }

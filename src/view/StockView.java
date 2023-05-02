@@ -1,11 +1,13 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import org.netbeans.lib.awtextra.AbsoluteConstraints;
 
 public class StockView extends javax.swing.JFrame {
 
@@ -16,7 +18,7 @@ public class StockView extends javax.swing.JFrame {
     public JPanel createCellTable(String value) {
         JPanel cell = new JPanel();
         cell.setBackground(new java.awt.Color(255, 255, 255));
-        cell.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(227, 227, 227)));
+        cell.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(227, 227, 227)));
         cell.setLayout(new BoxLayout(cell, BoxLayout.LINE_AXIS));
 
         JLabel text = new JLabel();
@@ -26,6 +28,20 @@ public class StockView extends javax.swing.JFrame {
         cell.add(text);
 
         return cell;
+    }
+
+    public void cleanTable() {
+        Component titleName = this.name.getComponents()[0];
+        Component titlePrice = this.price.getComponents()[0];
+        Component titleQuantity = this.quantity.getComponents()[0];
+
+        this.name.removeAll();
+        this.price.removeAll();
+        this.quantity.removeAll();
+
+        this.name.add(titleName, new AbsoluteConstraints(2, 2, 308, 33));
+        this.price.add(titlePrice, new AbsoluteConstraints(2, 2, 173, 33));
+        this.quantity.add(titleQuantity, new AbsoluteConstraints(2, 2, 93, 33));
     }
 
     /**
@@ -137,7 +153,7 @@ public class StockView extends javax.swing.JFrame {
 
         name.add(nameWrapper, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 308, 33));
 
-        table.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 350));
+        table.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 345));
 
         price.setBackground(new java.awt.Color(255, 255, 255));
         price.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 0, new java.awt.Color(227, 227, 227)));
@@ -155,7 +171,7 @@ public class StockView extends javax.swing.JFrame {
 
         price.add(priceWrapper, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 173, 33));
 
-        table.add(price, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 175, 350));
+        table.add(price, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 175, 345));
 
         quantity.setBackground(new java.awt.Color(255, 255, 255));
         quantity.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 0, new java.awt.Color(227, 227, 227)));
@@ -172,7 +188,7 @@ public class StockView extends javax.swing.JFrame {
 
         quantity.add(quantityWrapper, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 93, 33));
 
-        table.add(quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 0, 95, 350));
+        table.add(quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 0, 95, 345));
 
         actions.setBackground(new java.awt.Color(255, 255, 255));
         actions.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(227, 227, 227)));
@@ -189,7 +205,7 @@ public class StockView extends javax.swing.JFrame {
 
         actions.add(actionsWrapper, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 186, 33));
 
-        table.add(actions, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 190, 350));
+        table.add(actions, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 190, 345));
 
         buttonGroup.setBackground(new java.awt.Color(243, 243, 243));
         buttonGroup.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(229, 229, 229)));
@@ -234,8 +250,8 @@ public class StockView extends javax.swing.JFrame {
             .addGroup(containerLayout.createSequentialGroup()
                 .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(table, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(table, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(buttonGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 

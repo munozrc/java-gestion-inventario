@@ -14,12 +14,12 @@ public class StockModel {
     private float productPrice;
     private int productQuantity;
 
-    public ArrayList<StockModel> getAllProductsByName() {
+    public ArrayList<StockModel> getProductsByName(String name) {
         ArrayList<StockModel> list = new ArrayList<>();
-        String query = "SELECT products.*, stock.quantity FROM products JOIN stock ON products.id = stock.product WHERE products.name LIKE '%" + this.getProductName() + "%'";
+        String query = "SELECT products.*, stock.quantity FROM products JOIN stock ON products.id = stock.product WHERE products.name LIKE '%" + name + "%'";
         Connection con = Database.getConnection();
 
-        if (this.getProductName().trim().equals("")) {
+        if (name.trim().equals("")) {
             query = "SELECT products.*, stock.quantity FROM products JOIN stock ON products.id = stock.product";
         }
 
