@@ -43,6 +43,11 @@ public class ProductController implements ActionListener {
     }
 
     private void addProduct() {
+        if (!view.checkEmptyFields()) {
+            // TODO: show JOptionPane "Campos vacios"
+            return;
+        }
+
         String barcodeText = view.barcodeText.getText().trim();
         String nameText = view.nameText.getText().trim();
         String priceText = view.priceText.getText().trim();
@@ -50,15 +55,6 @@ public class ProductController implements ActionListener {
 
         SupplierModel supplier = (SupplierModel) view.providerComboBox.getSelectedItem();
         int idSupplier = supplier.getId();
-
-        if (barcodeText.equals("")
-                || nameText.equals("")
-                || priceText.equals("")
-                || quantityText.equals("")
-                || idSupplier == 0) { // if it is equal to zero it is the option "Selecciona"
-            // TODO: show JOptionPane "Campos vacios"
-            return;
-        }
 
         float price;
         int quantity;
@@ -86,6 +82,11 @@ public class ProductController implements ActionListener {
     }
 
     private void updateProduct() {
+        if (!view.checkEmptyFields()) {
+            // TODO: show JOptionPane "Campos vacios"
+            return;
+        }
+
         String barcodeText = view.barcodeText.getText().trim();
         String nameText = view.nameText.getText().trim();
         String priceText = view.priceText.getText().trim();
@@ -93,15 +94,6 @@ public class ProductController implements ActionListener {
 
         SupplierModel supplier = (SupplierModel) view.providerComboBox.getSelectedItem();
         int idSupplier = supplier.getId();
-
-        if (barcodeText.equals("")
-                || nameText.equals("")
-                || priceText.equals("")
-                || quantityText.equals("")
-                || idSupplier == 0) { // if it is equal to zero it is the option "Selecciona"
-            // TODO: show JOptionPane "Campos vacios"
-            return;
-        }
 
         float price;
         int quantity;

@@ -15,6 +15,20 @@ public class ProductForm extends javax.swing.JFrame {
         return instance;
     }
 
+    public boolean checkEmptyFields() {
+        String barcode = this.barcodeText.getText().trim();
+        String name = this.nameText.getText().trim();
+        String price = this.priceText.getText().trim();
+        String quantity = this.stockText.getText().trim();
+        boolean supplier = this.providerComboBox.getSelectedItem().equals("Selecciona");
+
+        return !(barcode.equals("")
+                && name.equals("")
+                && price.equals("")
+                && quantity.equals("")
+                && supplier);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
