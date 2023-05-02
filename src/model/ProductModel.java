@@ -53,6 +53,8 @@ public class ProductModel extends Observable {
                     }
                     generatedKeys.close();
                 }
+
+                pstmtProduct.close();
             }
 
             boolean addedStock;
@@ -60,12 +62,70 @@ public class ProductModel extends Observable {
             try (PreparedStatement pstmtStock = con.prepareStatement(queryStock)) {
                 pstmtStock.setInt(1, productID);
                 pstmtStock.setInt(2, quantity);
+
                 int insertedRowsStock = pstmtStock.executeUpdate();
                 addedStock = insertedRowsStock == 1;
+
+                pstmtStock.close();
             }
 
             con.commit();
             return addedProduct && addedStock;
+        } catch (SQLException e) {
+            try {
+                con.rollback();
+            } catch (SQLException e2) {
+            }
+            return false;
+        } finally {
+            try {
+                con.setAutoCommit(true);
+                con.close();
+                this.notifyObservers();
+            } catch (SQLException e) {
+            }
+        }
+    }
+
+    public boolean update(int quantity) {
+        String queryProduct = "UPDATE products SET name = ?, barcode = ?, price = ?, supplier = ? WHERE id = ?";
+        String queryStock = "UPDATE stock SET quantity = ? WHERE product = ?";
+        Connection con = Database.getConnection();
+
+        try {
+            con.setAutoCommit(false);
+        } catch (SQLException e) {
+            return false;
+        }
+
+        try {
+            boolean updatedProduct;
+
+            try (PreparedStatement pstmtProduct = con.prepareStatement(queryProduct)) {
+                pstmtProduct.setString(1, this.getName());
+                pstmtProduct.setString(2, this.getBarcode());
+                pstmtProduct.setFloat(3, this.getPrice());
+                pstmtProduct.setInt(4, this.getSupplier());
+                pstmtProduct.setInt(5, this.getId());
+
+                int updatedRowsProduct = pstmtProduct.executeUpdate();
+                updatedProduct = updatedRowsProduct == 1;
+                pstmtProduct.close();
+            }
+
+            boolean updatedStock;
+
+            try (PreparedStatement pstmtStock = con.prepareStatement(queryStock)) {
+                pstmtStock.setInt(1, quantity);
+                pstmtStock.setInt(2, this.getId());
+
+                int updatedRowsStock = pstmtStock.executeUpdate();
+                updatedStock = updatedRowsStock == 1;
+                pstmtStock.close();
+            }
+
+            con.commit();
+            return updatedProduct && updatedStock;
         } catch (SQLException e) {
             try {
                 con.rollback();

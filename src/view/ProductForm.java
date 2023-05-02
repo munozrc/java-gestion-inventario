@@ -58,12 +58,16 @@ public class ProductForm extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(435, 281));
         setName("ProductForm"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(435, 315));
         setResizable(false);
-        setSize(new java.awt.Dimension(435, 281));
-        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
+        setSize(new java.awt.Dimension(435, 315));
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.PAGE_AXIS));
 
         container.setBackground(new java.awt.Color(246, 246, 246));
+        container.setMinimumSize(new java.awt.Dimension(435, 281));
+        container.setPreferredSize(new java.awt.Dimension(435, 281));
         container.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         titleContainer.setBackground(new java.awt.Color(16, 16, 16));
@@ -161,31 +165,13 @@ public class ProductForm extends javax.swing.JFrame {
 
         buttonGroup.setBackground(new java.awt.Color(246, 246, 246));
         buttonGroup.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 0, new java.awt.Color(230, 230, 230)));
+        buttonGroup.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         buttonAccept.setText("Añadir");
+        buttonGroup.add(buttonAccept, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 15, 86, -1));
 
         buttonCancel.setText("Cancelar");
-
-        javax.swing.GroupLayout buttonGroupLayout = new javax.swing.GroupLayout(buttonGroup);
-        buttonGroup.setLayout(buttonGroupLayout);
-        buttonGroupLayout.setHorizontalGroup(
-            buttonGroupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buttonGroupLayout.createSequentialGroup()
-                .addContainerGap(225, Short.MAX_VALUE)
-                .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(buttonAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-        );
-        buttonGroupLayout.setVerticalGroup(
-            buttonGroupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buttonGroupLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(buttonGroupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonAccept)
-                    .addComponent(buttonCancel))
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
+        buttonGroup.add(buttonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 15, 86, -1));
 
         container.add(buttonGroup, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 435, 50));
 
@@ -214,7 +200,7 @@ public class ProductForm extends javax.swing.JFrame {
     private javax.swing.JLabel stockLabel;
     public javax.swing.JTextField stockText;
     private javax.swing.JPanel stockWrapper;
-    private javax.swing.JLabel title;
+    public javax.swing.JLabel title;
     private javax.swing.JPanel titleContainer;
     // End of variables declaration//GEN-END:variables
 }

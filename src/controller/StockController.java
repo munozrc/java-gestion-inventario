@@ -69,8 +69,7 @@ public class StockController implements ActionListener, Observer {
             JButton btnDeleteProduct = (JButton) cellActions.getComponent(1);
 
             btnEditProduct.addActionListener((ActionEvent e) -> {
-                // TODO: Implements edit product
-                System.out.println("EditProduct");
+                showUpdateProductForm(product);
             });
 
             btnDeleteProduct.addActionListener((ActionEvent e) -> {
@@ -90,6 +89,21 @@ public class StockController implements ActionListener, Observer {
         ProductModel productModel = new ProductModel();
         ProductForm productView = ProductForm.getInstance();
         (new ProductController(productModel, productView)).launchView();
+        productModel.attach(this);
+    }
+
+    private void showUpdateProductForm(StockModel productData) {
+        ProductModel productModel = new ProductModel();
+
+        productModel.setId(productData.getProductID());
+        productModel.setName(productData.getProductName());
+        productModel.setBarcode(productData.getProductBarcode());
+        productModel.setPrice(productData.getProductPrice());
+        productModel.setSupplier(productData.getProductSupplier());
+
+        ProductForm productView = ProductForm.getInstance();
+        ProductController productController = new ProductController(productModel, productView);
+        productController.launchUpdateView(productData.getProductQuantity());
         productModel.attach(this);
     }
 

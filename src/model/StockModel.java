@@ -11,8 +11,10 @@ public class StockModel {
 
     private int productID;
     private String productName;
+    private String productBarcode;
     private float productPrice;
     private int productQuantity;
+    private int productSupplier;
 
     public ArrayList<StockModel> getProductsByName(String name) {
         ArrayList<StockModel> list = new ArrayList<>();
@@ -32,8 +34,10 @@ public class StockModel {
 
                 product.setProductID(Integer.parseInt(rs.getString("id")));
                 product.setProductName(rs.getString("name"));
+                product.setProductBarcode("barcode");
                 product.setProductPrice(Float.parseFloat(rs.getString("price")));
                 product.setProductQuantity(Integer.parseInt(rs.getString("quantity")));
+                product.setProductSupplier(Integer.parseInt(rs.getString("supplier")));
 
                 list.add(product);
             }
@@ -60,6 +64,14 @@ public class StockModel {
         this.productName = productName;
     }
 
+    public String getProductBarcode() {
+        return productBarcode;
+    }
+
+    public void setProductBarcode(String productBarcode) {
+        this.productBarcode = productBarcode;
+    }
+
     public float getProductPrice() {
         return productPrice;
     }
@@ -74,6 +86,14 @@ public class StockModel {
 
     public void setProductQuantity(int productQuantity) {
         this.productQuantity = productQuantity;
+    }
+
+    public int getProductSupplier() {
+        return productSupplier;
+    }
+
+    public void setProductSupplier(int productSupplier) {
+        this.productSupplier = productSupplier;
     }
 
 }
