@@ -21,9 +21,18 @@ public class StockController implements ActionListener, Observer {
     private final StockModel model;
     private final StockView view;
 
+    private final SupplierFacade supplierFacade;
+    private final SupplierForm supplierView;
+    private final SupplierController supplierController;
+
     public StockController(StockModel model, StockView view) {
         this.model = model;
         this.view = view;
+
+        supplierFacade = new SupplierFacade();
+        supplierView = SupplierForm.getInstance();
+        supplierController = new SupplierController(supplierFacade, supplierView);
+
         searchProductsByName("");
         initializeListeners();
     }
@@ -108,9 +117,7 @@ public class StockController implements ActionListener, Observer {
     }
 
     private void showSupplierForm() {
-        SupplierFacade supplierFacade = new SupplierFacade();
-        SupplierForm supplierView = SupplierForm.getInstance();
-        (new SupplierController(supplierFacade, supplierView)).launchView();
+        supplierController.launchView();
     }
 
     private void deleteProduct(int productID) {
