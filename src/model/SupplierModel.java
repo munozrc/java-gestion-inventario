@@ -27,7 +27,7 @@ public class SupplierModel {
     public boolean isValidField() {
         String parseName = this.getName().trim();
         String parseEmail = this.getEmail().trim();
-        return !(parseName.equals("") && parseEmail.equals(""));
+        return !parseName.equals("") && !parseEmail.equals("");
     }
 
     public boolean isValidEmail() {

@@ -24,13 +24,13 @@ public class SupplierFacade {
         boolean isValidData = true;
         String error = "";
 
-        if (!objSupplier.isValidField()) {
-            error = "Existen campos vacios!";
+        if (!objSupplier.isValidEmail()) {
+            error = "Email no valido!";
             isValidData = false;
         }
 
-        if (!objSupplier.isValidEmail() && isValidData) {
-            error = "Email no valido!";
+        if (!objSupplier.isValidField()) {
+            error = "Existen campos vacios!";
             isValidData = false;
         }
 
